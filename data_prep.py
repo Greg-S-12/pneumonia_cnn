@@ -17,9 +17,9 @@ Example
     
     """   
     for split in splits:
-        os.mkdir(f'{split}/')
+        os.mkdir('{}/'.format(split))
         for c in list_of_classes:
-            sub_folder = os.path.join(f'{split}/', f'{c}')
+            sub_folder = os.path.join('{}/'.format(split), '{}'.format(c))
             os.mkdir(sub_folder)
 
             
@@ -76,7 +76,7 @@ def move_files_to_groups_by_split(split_percentages, files, groups, directory, d
         splits={}
         splits['train'], splits['test'], splits['val'] = train_test_val(split_percentages, files[group])
         for split in splits:
-            destination = f'{destination_folder}/{split}/{group}/'
+            destination = '{}/{}/{}/'.format(destination_folder,split,group)
             move_files(directory, splits[split], destination)
         
         
