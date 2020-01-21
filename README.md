@@ -1,12 +1,13 @@
 # Diagnosing Pneumonia from X-ray Images with Convolutional Neural Networks
 This project involves Convolutional Neural Networks as a method of image recognition in order to identify cases of pneumonia from x-ray images.
 <br> Neural Networks have recently been employed as a method of identifying cancer from x-ray screenings or CAT scans [1,2]. Companies are now leveraging deep learning and machine learning techniques for healthcare, such as BenevolentAI's 'Benevolent Platform', in order to: 
+
 <br>• Improve healthcare services
 <br>• Increase diagnosis accuracy and speed
 <br>• Identify new/best treatments 
 <br>• Improve treatment efficacy
 
-<br> Pneumonia is the #1 infection-related cause of death in developed countries and is the cause of death for 15% of children aged under 5 years in devoloping countries. Viral and Bacterial Pneumonia have different treatments and the cost of misdiganosis is often high, leading to increased mortality rates. Radiology is the most succesful method of diagnosis but is time-consuming and costly.
+Pneumonia is the #1 infection-related cause of death in developed countries and is the cause of death for 15% of children aged under 5 years in devoloping countries. Viral and Bacterial Pneumonia have different treatments and the cost of misdiganosis is often high, leading to increased mortality rates. Radiology is the most succesful method of diagnosis but is time-consuming and costly.
 <br> This project aims to diagnose penumonia from x-rays with a high rate of recall, reducing the cost, resources and time in the procedure, resulting in reduced mortality rates.
 
 ## Methods
@@ -29,7 +30,7 @@ Convolutional Neural Networks have been employed using Keras with Tensorflow bac
 <br>• VGG16 was used as it has been trained on 15 million images on imagenet.
 <br>• The first few layers are able to identify different 'blob' sizes, colours and edges.
 
-(In order to perform the above easily, one should convert all images which are in grayscale to RGB. Either way, all images need to be of the same colour scale.)
+(In order to perform the above easily, one should convert all images which are in grayscale to RGB such that all images need to be of the same colour scale.)
 
 ## Different Libraries
 •Python (programming language projected written in)
@@ -39,14 +40,14 @@ Convolutional Neural Networks have been employed using Keras with Tensorflow bac
 <br>•Pandas (Dataframes and managing labels)
 <br>•NumPy (Arrays for data and labels, calculations)
 <br>•Seaborn (Visualizations)
-<br>•os/shutil (Managing files and moving them to correct directories/subfolders)]
+<br>•os/shutil (Managing files and moving them to correct directories/subfolders)
 
 The Imgaug library has several requirements which will be installed alongside Imgaug. These libraries can all be safely installed with Pip or Conda (if using the Conda environment).
 
 ## Project Description
 
 ### The Data
-<br> The dataset conists of 5,863 x-ray images of children ages 1-5 from Guangzhou Children's Medical Center, and can be found here: https://data.mendeley.com/datasets/rscbjbr9sj/2 .The images were graded and labeled by two experts in order to diagnose Pneumonia and the type before a final check by a third expert. There were 3 labels - normal (healthy lungs), bacterial pneumonia and viral pneumonia. Viral and bacterial pneumonia are the two most common types. The cause can be fungal but this is very rare. Otherwise serious conditions can lead to pneuomonia such heart failure, or a pulmonary embolism, which must be indentified rapidly for successful treatment.
+The dataset conists of 5,863 x-ray images of children ages 1-5 from Guangzhou Children's Medical Center, and can be found here: https://data.mendeley.com/datasets/rscbjbr9sj/2 .The images were graded and labeled by two experts in order to diagnose Pneumonia and the type before a final check by a third expert. There were 3 labels - normal (healthy lungs), bacterial pneumonia and viral pneumonia. Viral and bacterial pneumonia are the two most common types. The cause can be fungal but this is very rare. Otherwise serious conditions can lead to pneumonia such heart failure, or a pulmonary embolism, which must be indentified rapidly for successful treatment.
 <br> As these files are quite large, it is recommended you either add them to your gitignore or use git LFS (Large File Storage). However as models for the proejct were run on Google Cloud git LFS may not function correctly. The data can downloaded from here: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
 
 ### Hypothesis and Goal
@@ -55,7 +56,8 @@ The first goal is to see if we can successfully separate cases of pneuomiona fro
 <br>• Blood cultures - These can take 24-48 hours to cultivate, so not suitable for high risk patients
 <br>• Measuring highly-sensitive C-reactive protein (hs-CRP) - not a consitently accurate predictor [3]
 <br>• Measuring Procalcitonin levels (PCT) - succssful at separating bacterial pneumonia vs differential diagnoses, but not specifically for identifying viral infections.[3]
-<br>If a high rate of succesful predictions is achieved, this can be implemented, increasing the use of radiology by signifcantly reducing the cost and time of this method and decreasing mortality rates overall.
+
+If a high rate of succesful predictions is achieved, this can be implemented, increasing the use of radiology by signifcantly reducing the cost and time of this method and decreasing mortality rates overall.
 
 ### Convolutional Neural Networks
 Convolutional Neural Networks rely on the same methodology as all neural networks - back-propagation. This is the process of the network calculating various 'weights' for each neuron in each layer and outputting a prediction. Based on whether the predictions given are correct or not, their associated errors are calculated and the model 'back-propagates' this error, adjusting the weights for each layer in order to improve the model. This utilises Gradient Descent to adjust the weights.
@@ -68,7 +70,7 @@ Convolutional Neural Networks rely on the same methodology as all neural network
 ### Class Imbalance and Data Generation
 In this dataset, as in many medical datasets, there is a class imbalance. This means that classes which the netowrk is trying to predict have a substantial difference in terms of the amount of training data available for each class. In this case, there are far more cases of Pneumonia that healthy lungs (as one might expect considering the patients have undergone an x-ray scan to determine the cause of an illness/sypmtom). What this means is our trined model will learn to expect more of one class than the other and can begin to predict accordingly. This will also invalidate accuracy as an evaluation metric. 
 <br> The simplest method to tackle this problem is weighting the classes, such that the undersampled class is more heavily weighted, reducing the bias in training our model.
-<br> Another method which can be used in image recognition is data generation. Here the images from the undersampled class are taken and augmented (rotated, cropped, flipped, contras/brightness can be increased/decreased etc.) and these augmented images are used in place of the original. This process is repeated until there are near equal number of each class in the training dataset. In this project, the data generator is used during training - this is known as 'on-the-fly' data generation, as ther data is not actually stored anywhere.
+<br> Another method which can be used in image recognition is data generation. Here the images from the undersampled class are taken and augmented (rotated, cropped, flipped, contras/brightness can be increased/decreased etc.) and these augmented images are used in place of the original. This process is repeated until there are near equal number of each class in the training dataset. In this project, the data generator is used during training - this is known as 'on-the-fly' data generation, as the data is not actually stored locally.
 
 
 
