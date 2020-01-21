@@ -1,0 +1,34 @@
+------
+Models
+------
+
+
+3 Class
+--------
+Predicted 3 classes using data generator for both validation and training data.
+
+2 Class
+-------
+Best model
+- Model which perforper had best performance on the test data.
+
+DataGen
+- Models which used a data generator for the training data but NOT validation.
+
+Weighted
+- Models which used class weightings instead of a data generator for training dataset.
+- Mainly to see effect of data generator on training data and predictions.
+
+
+------
+Layers
+------
+
+Dropouts
+- Added varying number of Dropout(0.3) layers to model to see effect on loss. Reduces
+number of weights (30%) to zero. Should slow learning but improve overfitting.
+
+Batch_Normalization
+- Adaptive histogram equalization. Normalizes weights to reduce covariate shift
+Can allow for increase in learning rate and can replace dropout layers.
+See: https://arxiv.org/pdf/1502.03167.pdf
