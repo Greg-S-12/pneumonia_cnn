@@ -1,13 +1,12 @@
 # Diagnosing Pneumonia from X-ray Images with Convolutional Neural Networks
 This project involves Convolutional Neural Networks as a method of image recognition in order to identify cases of pneumonia from x-ray images.
 <br> Neural Networks have recently been employed as a method of identifying cancer from x-ray screenings or CAT scans [1,2]. Companies are now leveraging deep learning and machine learning techniques for healthcare, such as BenevolentAI's 'Benevolent Platform', in order to: 
-
 <br>• Improve healthcare services
 <br>• Increase diagnosis accuracy and speed
 <br>• Identify new/best treatments 
 <br>• Improve treatment efficacy
 
-Pneumonia is the #1 infection-related cause of death in developed countries and is the cause of death for 15% of children aged under 5 years in devoloping countries. Viral and Bacterial Pneumonia have different treatments and the cost of misdiganosis is often high, leading to increased mortality rates. Radiology is the most succesful method of diagnosis but is time-consuming and costly.
+Pneumonia is the #1 infection-related cause of death in developed countries and is the cause of death for 15% of children aged under 5 years in devoloping countries. Viral and bacterial Pneumonia have different treatments and the cost of misdiganosis is often high, leading to increased mortality rates. Radiology is the most succesful method of diagnosis but is time consuming and costly.
 <br> This project aims to diagnose penumonia from x-rays with a high rate of recall, reducing the cost, resources and time in the procedure, resulting in reduced mortality rates.
 
 ## Methods
@@ -18,7 +17,7 @@ Convolutional Neural Networks have been employed using Keras with Tensorflow bac
 <br>•MaxPooling2D
 <br>•SeparableConv2D (Pointwise and Depthwise Convolutions)
 <br>•BatchNormalization
-<br>•Dropout (used varying percentages)
+<br>•Dropout (varying dropout percentages)
 
 ### Activation Functions
 •SoftMax (for final output layer)
@@ -47,13 +46,14 @@ The Imgaug library has several requirements which will be installed alongside Im
 ## Project Description
 
 ### The Data
-The dataset conists of 5,863 x-ray images of children ages 1-5 from Guangzhou Children's Medical Center, and can be found here: https://data.mendeley.com/datasets/rscbjbr9sj/2 .The images were graded and labeled by two experts in order to diagnose Pneumonia and the type before a final check by a third expert. There were 3 labels - normal (healthy lungs), bacterial pneumonia and viral pneumonia. Viral and bacterial pneumonia are the two most common types. The cause can be fungal but this is very rare. Otherwise serious conditions can lead to pneumonia such heart failure, or a pulmonary embolism, which must be indentified rapidly for successful treatment.
+The dataset conists of 5,863 x-ray images of children ages 1-5 from Guangzhou Children's Medical Center, and can be found here: https://data.mendeley.com/datasets/rscbjbr9sj/2 .The images were graded and labeled by two experts in order to diagnose Pneumonia and the type before a final check by a third expert. There were 3 labels - normal (healthy lungs), bacterial pneumonia and viral pneumonia. Viral and bacterial pneumonia are the two most common types. The cause can also be fungal but this is very rare and not present within this dataset. Other causes of pneumonia can be serious conditions such as heart failure, or a pulmonary embolism, which must be indentified rapidly for successful treatment.
 <br> As these files are quite large, it is recommended you either add them to your gitignore or use git LFS (Large File Storage). However as models for the proejct were run on Google Cloud git LFS may not function correctly. The data can downloaded from here: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
 
 ### Hypothesis and Goal
 The first goal is to see if we can successfully separate cases of pneuomiona from healthy lungs and make correct predictions from just the images. Radiology is the most effective method of diagnosis and implementing an AI in place of doctors would save time and resources and could potentially achieve a higher accuracy than a single expert.
 <br> Secondly it was of interest to see if we could further separate cases of pneumonia from viral or bacterial infection as the treatment (and thereby survival rate) are dependant on the type of infection. Bacterial pneumonia can be treated with anti-biotics and the maximum time from admission to begin treatment is 4 hours before mortality rates begin to increase. Viral pneumonia is usually only identified through failure of treatment using anti-biotics, which, in very young or elderely patients, puts them at higher risk of death. It can also lead to the original cause  of symptoms (which can be a severe condition) untreated. There are several methods, aside from radiology, which can be used alongside traditional diagnosis methods (chest exminations, listening to breathing) such as:
-<br>• Blood cultures - These can take 24-48 hours to cultivate, so not suitable for high risk patients
+
+<br>• Blood cultures - these can take 24-48 hours to cultivate, so not suitable for high risk patients
 <br>• Measuring highly-sensitive C-reactive protein (hs-CRP) - not a consitently accurate predictor [3]
 <br>• Measuring Procalcitonin levels (PCT) - succssful at separating bacterial pneumonia vs differential diagnoses, but not specifically for identifying viral infections.[3]
 
