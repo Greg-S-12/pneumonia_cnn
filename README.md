@@ -52,8 +52,7 @@ The dataset conists of 5,863 x-ray images of children ages 1-5 from Guangzhou Ch
 ### Hypothesis and Goal
 The first goal is to see if we can successfully separate cases of pneuomiona from healthy lungs and make correct predictions from just the images. Radiology is the most effective method of diagnosis and implementing an AI in place of doctors would save time and resources and could potentially achieve a higher accuracy than a single expert.
 <br> Secondly it was of interest to see if we could further separate cases of pneumonia from viral or bacterial infection as the treatment (and thereby survival rate) are dependant on the type of infection. Bacterial pneumonia can be treated with anti-biotics and the maximum time from admission to begin treatment is 4 hours before mortality rates begin to increase. Viral pneumonia is usually only identified through failure of treatment using anti-biotics, which, in very young or elderely patients, puts them at higher risk of death. It can also lead to the original cause  of symptoms (which can be a severe condition) untreated. There are several methods, aside from radiology, which can be used alongside traditional diagnosis methods (chest exminations, listening to breathing) such as:
-
-<br>• Blood cultures - these can take 24-48 hours to cultivate, so not suitable for high risk patients
+<br><br>• Blood cultures - these can take 24-48 hours to cultivate, so not suitable for high risk patients
 <br>• Measuring highly-sensitive C-reactive protein (hs-CRP) - not a consitently accurate predictor [3]
 <br>• Measuring Procalcitonin levels (PCT) - succssful at separating bacterial pneumonia vs differential diagnoses, but not specifically for identifying viral infections.[3]
 
