@@ -1,3 +1,5 @@
+## Current Status: IN PROGRESS - FINALIZING NOTEBOOKS
+
 # Diagnosing Pneumonia from X-ray Images with Convolutional Neural Networks
 This project involves Convolutional Neural Networks as a method of image recognition in order to identify cases of pneumonia from x-ray images.
 <br> Neural Networks have recently been employed as a method of identifying cancer from x-ray screenings or CAT scans [1,2]. Companies are now leveraging deep learning and machine learning techniques for healthcare, such as BenevolentAI's 'Benevolent Platform', in order to: 

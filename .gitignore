@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 # Data
-/all_xrays
+Docs/all_xrays
 /chest_xray
 /xrays_kaggle
+/readme_images
