@@ -8,7 +8,7 @@ from keras.utils import to_categorical
 
 
 class Files():
-#Create a class . object for which we can find and move files while keeping track of them
+#Create a class object for which we can find and move files while keeping track of them
 
     def __init__(self,files=[]):
         self.files=files   # Create an empty list to store the files in our object.
@@ -133,7 +133,7 @@ class Files():
         self.files = None
 
 
-def find_files(file_directory,condition=None):
+def find_files(file_directory, condition=None):
         
     file_directory = file_directory     # Keep track of the files
     files=[]    # Empty list so we manage this batch of files and can chain methods.
@@ -143,8 +143,7 @@ def find_files(file_directory,condition=None):
         files += [file for file in os.listdir(file_directory)]       
     else:        
         files += [file for file in os.listdir(file_directory) if condition in file]   
-
-        
+       
     return files
         
     
