@@ -1,4 +1,4 @@
-## Current Status: IN PROGRESS - FINALIZING NOTEBOOKS
+## Current Status: Complete (Final Model Built, further work)
 
 # Diagnosing Pneumonia from X-ray Images with Convolutional Neural Networks
 This project involves Convolutional Neural Networks as a method of image recognition in order to identify cases of pneumonia from x-ray images.
