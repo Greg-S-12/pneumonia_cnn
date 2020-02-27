@@ -1,5 +1,14 @@
 ## Current Status: Complete (Final Model Built, further work)
 
+### Files in this Notebook:
+* Docs: Contains final presentation as well as information on different architecture used in this project. Also where x-ray images will be stored if follow instructions in Data_Prep.ipynb
+* Data_Prep: Notebook containing files so the user may download the dataset and run the notebook so it is formatted for training. Demonstrates potential problems with the data as well as some functions used in later Notebooks.
+* Multiclass_Model: Notebook containing functions to read in data and neural network architecture used to solve this as 3 class problem.
+* Binary_Model: Notebook containing functions to read in data and neural network architecture used to solve this as 2 class problem.
+* Testing_Model: Notebook to be used for reading in test data and testing various models by printing a confusion matrix as well as calculating various other metrics.
+* Data_Prep.py: Contains all functions used in all 4 notebooks.
+* ReadMe: This file!
+
 # Diagnosing Pneumonia from X-ray Images with Convolutional Neural Networks
 This project involves Convolutional Neural Networks as a method of image recognition in order to identify cases of pneumonia from x-ray images.
 <br> Neural Networks have recently been employed as a method of identifying cancer from x-ray screenings or CAT scans [1,2]. Companies are now leveraging deep learning and machine learning techniques for healthcare, such as BenevolentAI's 'Benevolent Platform', in order to: 
