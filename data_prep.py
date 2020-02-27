@@ -187,8 +187,90 @@ def image_data_and_labels(imagetype, directory, subfolders, class_labels):
     return data,labels
     
 
+def data_generator_3class(data, batch_size, directory):
     
-def data_generator(data, batch_size, sequence, size, directory):
+    n = len(data)
+    steps = n//batch_size
+    
+    batch_images = np.zeros((batch_size, 224,224,3),dtype=np.float32)
+    batch_labels = np.zeros((batch_size, 3),dtype=np.float32)
+    
+    indices = np.arange(n)
+    
+    # Initialize a counter
+    i = 0
+    while True:
+        np.random.shuffle(indices)
+        # Get the next batch 
+        count = 0
+        next_batch = indices[(i*batch_size):(i+1)*batch_size]
+        for j, idx in enumerate(next_batch):
+            img_name = data.iloc[idx]['file']
+            label = data.iloc[idx]['class']            
+            
+            # read the image and resize
+            if "0001" in img_name:
+                img = cv2.imread(str(os.path.join("{}normal".format(directory),str(img_name))))
+                img = cv2.resize(img, (224,224)) # Setting the size of all the images as 224x224 - standard input size for VGG-16
+            
+            elif "virus" in img_name:
+                img = cv2.imread(str(os.path.join("{}virus".format(directory),str(img_name))))
+                img = cv2.resize(img, (224,224))
+                                 
+            else:
+                img = cv2.imread(str(os.path.join("{}bacteria".format(directory),str(img_name))))
+                img = cv2.resize(img, (224,224))
+            
+            # one hot encoding
+            encoded_label = to_categorical(label, num_classes=3)
+            
+            if img.shape[2] == 1:       
+                img = np.dstack([img, img, img])  # If grayscale then converts to rgb.
+            
+            # cv2 reads in BGR mode by default
+            orig_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            # normalize the image pixels
+            orig_img = img.astype(np.float32)/255.
+            
+            batch_images[count] = orig_img
+            batch_labels[count] = encoded_label
+            
+            # generating more samples of the undersampled class
+            if label == 0 and count < batch_size-2:
+                aug_img_n = seq.augment_image(img)
+                aug_img_n = cv2.cvtColor(aug_img_n, cv2.COLOR_BGR2RGB)
+                aug_img_n = aug_img_n.astype(np.float32)/255.
+
+                batch_images[count+1] = aug_img_n
+                batch_labels[count+1] = encoded_label
+                
+                count += 2
+
+            elif label==1 and count < batch_size-2:
+                aug_img_v = seq.augment_image(img)
+                aug_img_v = cv2.cvtColor(aug_img_v, cv2.COLOR_BGR2RGB)
+                aug_img_v = aug_img_v.astype(np.float32)/255.
+                
+                batch_images[count+1] = aug_img_v
+                batch_labels[count+1] = encoded_label
+
+                count += 2 
+            
+            else:
+                count += 1
+            
+            if count == batch_size-1:
+                break
+            
+        i+=1
+        yield batch_images, batch_labels
+            
+        if i>=steps:
+            i=0    
+            
+    
+    
+def data_generator_binary(data, batch_size, sequence, size, directory):
     
     n = len(data)
     steps = n//batch_size
